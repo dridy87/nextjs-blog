@@ -8,10 +8,10 @@ export default function Post({ postData }) {
   return (
     <Layout>
       <Head>
-        <title>{postData.title}</title>
+        {/* <title>{postData.title}</title> */}
       </Head>
 
-      {postData.title}
+      {/* {postData.title} */}
       <br />
       {postData.id}
       <br />
