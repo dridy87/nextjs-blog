@@ -10,7 +10,7 @@ export default function Post({ postData }) {
       <Head>
         {/* <title>{postData.title}</title> */}
       </Head>
-
+ 
       {/* {postData.title} */}
       <br />
       {postData.id}
