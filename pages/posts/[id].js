@@ -12,7 +12,7 @@ export default function Post({ postData }) {
 
   return (
     
-    <Layout post>
+    <Layout >
       <Head>
         <title>{postData.title}</title>
       </Head>
