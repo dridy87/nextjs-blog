@@ -43,12 +43,14 @@ export default function Layout({ children, home }) {
           <Icon name='gamepad' />
           Games
         </Menu.Item>
+        <Link href='/first'>
         <Menu.Item as='a'>
       
           <Icon name='camera' />
-          
-          <Link href='/first'>Channels</Link> 
+          Channels
+               
         </Menu.Item>
+        </Link> 
       </Sidebar>
 
         <Sidebar.Pusher>
