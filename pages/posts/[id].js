@@ -5,13 +5,14 @@ import { getAllPostIds, getPostData } from '../../lib/posts'
 import React, { useState } from 'react';
 import Alert from 'react-bootstrap/Alert'
 import Button from 'react-bootstrap/Button'
+
 export default function Post({ postData }) {
   const [show, setShow] = useState(true);
 
 
   return (
     
-    <Layout>
+    <Layout post>
       <Head>
         <title>{postData.title}</title>
       </Head>
