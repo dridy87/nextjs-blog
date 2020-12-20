@@ -31,7 +31,7 @@ export default function Layout({ children, home }) {
         icon='labeled'
         inverted
         vertical
-        visible='true'
+        visible
         width='thin'
 
       >
