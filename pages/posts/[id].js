@@ -4,7 +4,7 @@ import Date from '../../components/date'
 import { getAllPostIds, getPostData } from '../../lib/posts'
 import React, { useState } from 'react';
 import Alert from 'react-bootstrap/Alert'
-
+import Button from 'react-bootstrap/Button'
 export default function Post({ postData }) {
   const [show, setShow] = useState(true);
 
