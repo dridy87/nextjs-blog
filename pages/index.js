@@ -40,6 +40,7 @@ export default function Home({ allPostsData}) {
           ))}
         </ul>
       </section>
+      <Link href="/first">frist</Link>
     </Layout>
 
     
