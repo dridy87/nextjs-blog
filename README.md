@@ -1,3 +1,7 @@
+12.29
+https://react.semantic-ui.com/usage
+
+
 ### 
 https://nextjs-blog-six-beryl.vercel.app/
 
