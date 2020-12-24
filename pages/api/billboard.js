@@ -6,13 +6,12 @@ const client = new MongoClient(uri, { useNewUrlParser: true,useUnifiedTopology: 
 
 export default function handler(req, res) {
    
-
     client.connect(err => {
         const collection = client.db("dridy").collection("stock");
         // perform actions on the collection object
       
         //console.log(collection.find())
-        collection.find().sort({ '_id': -1 }).toArray(function (err, result) {
+        collection.find().toArray(function (err, result) {
           if (err) throw err;
       
           console.log({value:result})

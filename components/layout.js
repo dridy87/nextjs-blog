@@ -39,14 +39,16 @@ export default function Layout({ children, home }) {
           <Icon name='home' />
           Home
         </Menu.Item>
+        <Link href='/billboard'>
         <Menu.Item as='a'>
-          <Icon name='gamepad' />
-          Games
+          <Icon name='music' />
+          billboard
         </Menu.Item>
+        </Link>
         <Link href='/first'>
         <Menu.Item as='a'>
       
-          <Icon name='camera' />
+          <Icon name='chart line' />
           Channels
                
         </Menu.Item>
