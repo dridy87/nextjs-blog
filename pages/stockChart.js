@@ -1,9 +1,8 @@
 import React, { Component, useState, useEffect } from 'react';
-import { render } from 'react-dom';
 import HighchartsReact from 'highcharts-react-official';
 import Highcharts from 'highcharts/highstock';
-import * as utils from "./utils";
-
+import * as utils from "../lib/utils";
+import { Button, Divider, Input, Segment } from 'semantic-ui-react'
 import useSwr from 'swr'
 
 const fetcher = (url) => fetch(url).then((res) => {
@@ -54,7 +53,7 @@ export default function StockChart() {
             options.series[1]['data'] = volume;
             options.series[1]['dataGrouping'] = groupingUnits;
             options.series[2]['data'] = []
-            
+
 
             options.series[3]['data'] = utils.drawLine(data[0].data, 20);
             options.series[4]['data'] = utils.drawLine(data[0].data, 60);
@@ -224,12 +223,25 @@ export default function StockChart() {
     }
 
     return (
-        
+
         <div>
-            <HighchartsReact
+            <Segment basic textAlign='center'>
+                <Input
+                    action={{ color: 'blue', content: 'Search' }}
+                    icon='search'
+                    iconPosition='left'
+                    placeholder='Order #'
+                />
+
+  
+                  <Divider inverted/>
+                <HighchartsReact
                 highcharts={Highcharts}
                 options={option}
             />
+            </Segment>
+
+            
         </div>
     )
 }

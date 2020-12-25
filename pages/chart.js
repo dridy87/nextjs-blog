@@ -3,6 +3,9 @@ import { render } from 'react-dom';
 import HighchartsReact from 'highcharts-react-official';
 import Highcharts from 'highcharts';
 
+import { Button, Divider, Input, Segment } from 'semantic-ui-react'
+
+
 class LineChart extends Component {
   constructor(props) {
     super(props);
@@ -40,7 +43,7 @@ class LineChart extends Component {
     this.setState({
       chartOptions: {
         series: [
-          { data: [Math.random() * 5, 2, 1]}
+          { data: [Math.random() * 5, 2, 1] }
         ]
       }
     });
@@ -50,13 +53,30 @@ class LineChart extends Component {
     const { chartOptions, hoverData } = this.state;
 
     return (
+
       <div>
-        <HighchartsReact
+        <Segment basic textAlign='center'>
+          <Input
+            action={{ color: 'blue', content: 'Search' }}
+            icon='search'
+            iconPosition='left'
+            placeholder='Order #'
+          />
+
+          <Divider horizontal>Or</Divider>
+          <HighchartsReact
           highcharts={Highcharts}
           options={chartOptions}
         />
-      <h3>Hovering over {hoverData}</h3>
-      <button onClick={this.updateSeries.bind(this)}>Update Series</button>
+          <Button
+            color='teal'
+            content='Create New Order'
+            icon='add'
+            labelPosition='left'
+          />
+        </Segment>
+        
+     
       </div>
     )
   }
