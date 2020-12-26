@@ -30,6 +30,9 @@ export default function Index() {
 
   });
 
+  function onClick(e){
+    console.log(e);
+  }
 
 
 
@@ -43,7 +46,10 @@ export default function Index() {
       <YoutubePlayer data={data} videoId={videoId}  />
       <Container style={{'maxHeight': '380px', 'overflowY':'scroll'}}>
       {data.map((user, index) => (
-        <Item.Group divided onClick={() => setVideoId(user.videoId)}>
+        <Item.Group divided onClick={() => {
+          setVideoId(user.videoId)
+          onClick(user.videoId);
+        }}>
             <Item key={user._id} >
               <Item.Image src={`${user.image}`}  />
               <Item.Content>

@@ -2,7 +2,7 @@ import React, { Component, useState, useEffect } from 'react';
 import { render } from 'react-dom';
 import HighchartsReact from 'highcharts-react-official';
 import Highcharts from 'highcharts/highstock';
-import * as utils from "./utils";
+import * as utils from "../lib/utils";
 
 import useSwr from 'swr'
 
