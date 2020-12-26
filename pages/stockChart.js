@@ -3,6 +3,7 @@ import HighchartsReact from 'highcharts-react-official';
 import Highcharts from 'highcharts/highstock';
 import * as utils from "../lib/utils";
 import useSwr from 'swr'
+import { Input, Segment, Divider } from 'semantic-ui-react'
 
 const fetcher = (url) => fetch(url).then((res) => {
     return res.json()
