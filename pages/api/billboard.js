@@ -11,19 +11,32 @@ export default function handler(req, res) {
         // perform actions on the collection object
       
         //console.log(collection.find())
-        collection.find().toArray(function (err, result) {
+        
+        collection.aggregate([
+          {
+            $lookup:
+            {
+              from: "like",
+              localField: "videoId", // field in the stock collection
+              foreignField: "videoId",// field in the like collection
+              as: "inventory_docs"
+            }
+          }
+        ])
+
+        .toArray(function (err, result) {
           if (err) throw err;
-      
-          console.log({value:result})
           res.statusCode = 200
+          console.log(result)
           res.status(200).json(result)
-        //   client.close();
-          });
+        });
         
         //client.close();
       });
   }
   
+
+
 
 // const users = [{ id: 1 }, { id: 2 }, { id: 3 }]
 

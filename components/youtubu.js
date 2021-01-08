@@ -8,25 +8,20 @@ const videoIdA = 'XxVg_s8xAms';
 const videoIdB = '-DX3vJiqxm4';
 
 export default function Example(props) {
-
-
   // const [videoId, setVideoId] = useState(props.videoId);
   const [player, setPlayer] = useState(null);
   const [isReady, setReady] = useState(false);
+  const [videoId, setVideId] = useState(props.videoId);
   useEffect(() => {
-    if (isReady) {
+    if (isReady && videoId != props.videoId) {
       console.log('youtubu change', props.videoId)
-      // player.loadVideoById(props.videoId)
-
-      // console.log(props.data);
+      setVideId(props.videoId)
       let t = [];
       props.data.map((you) => (
         // console.log(you.videoId),
         t.push(you.videoId)
       ))
       let index = props.data.findIndex(t=>t.videoId == props.videoId);
-      console.log(props.videoId)
-      console.log(index)
       player.loadPlaylist(t,index)
 
     }
@@ -36,13 +31,9 @@ export default function Example(props) {
 
   const onReady = (event) => {
     // eslint-disable-next-line
-
     console.log(`YouTube Player object for videoId: "${props.videoId}" has been saved to state.`);
     setPlayer(event.target);
     setReady(true);
-
-
-
   };
 
   const onPlayVideo = () => {
