@@ -1,50 +1,132 @@
-import Head from 'next/head'
-//import Layout, { siteTitle } from '../components/layout'
-import Layout, { siteTitle } from '../components/layout'
-import styles from '../styles/Home.module.css'
-import Link from 'next/link';
-import Date from "../components/date";
-import utilStyles from '../styles/utils.module.css'
+// import Layout from '../../components/layout'
+// import Date from '../../components/date'
+import React, { useState, useEffect } from 'react';
+import Layout from '../components/layout'
+import useSwr from 'swr'
+import Link from 'next/link'
+import YoutubePlayer from "../components/youtubu";
+import { Container, Button, Icon, Image, Item, Label } from 'semantic-ui-react'
+import axios from 'axios';
 
+const fetcher = (url) => fetch(url).then((res) => {
+  return res.json()
+})
 
-import { getSortedPostsData } from "../lib/posts";
-export async function getStaticProps() {
-  const allPostsData = getSortedPostsData()
-  console.log(allPostsData)
-  return {
-    props: {
-      allPostsData
+export default function Index(ddd) {
+
+  const { data, error } = useSwr('/api/billboard', fetcher, {
+    onSuccess: (data) => {
+
+      console.log(data)
+      // data = data.forEach(element => {
+      //   element.inventory_docs.push({like:'red'})
+      // });
+      setVideoId(data[0].videoId)
+      setList(data);
     }
-  }
-}
+  })
 
-export default function Home({ allPostsData}) {
+  const [list, setList] = useState();
+  const [videoId, setVideoId] = useState();
+  const [count, setCount] = useState(0);
+
+
+  function onClick(e) { 
+    var t = list.find(t=>t.rank == e.rank);
+    
+    if(t.inventory_docs.length == 0) {
+      t.inventory_docs.push({'YN': ''})
+    }
+    t.inventory_docs[0].YN = t.inventory_docs[0].YN == 'red' ? '' : 'red';
+
+    setCount(count + 1)
+
+      axios.post(`/api/billboard/${t._id}`, {
+        id: t._id,
+        videoId: t.videoId,
+        YN: t.inventory_docs[0].YN
+      });
+    
+  }
+
+  //if (error) return <div>Failed to load users</div>
+  if (!data) return <Layout home><div>Loading...</div></Layout>
+  if (!list) return <Layout home><div>Loading...</div></Layout>
+
   return (
     <Layout home>
-      <Head>
-        <title>{siteTitle}</title>
-      </Head>
-      <section className={utilStyles.headingMd}>
-        <p>[Your Self Introduction]</p>
-      </section>
-      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Blog</h2>
-        <ul className={utilStyles.list}>
-       
-          {allPostsData.map(({ id, date, title }) => (
-            <li className={utilStyles.listItem} key={id}>
-              <Link href={`/posts/${encodeURIComponent(id)}`}>{title}</Link> 
-              <br />
-              id:{id}
-              <br />
-              {date}
-            </li>
-          ))}
-        </ul>
-      </section>
-      <Link href="/first">frist</Link>
-    </Layout>
+      {/* aAkMkVFwAoo */}
+      {/* <Example videoId = {`${user.videoId}`}/>  */}
+      
+      <div style={{display:"none"}}>{count}</div>
+      <YoutubePlayer data={list} videoId={videoId} />
+      <Container style={{ 'maxHeight': '380px', 'overflowY': 'scroll' }}>
+        {list.map((user, index) => (
+          <Item.Group divided >
+            <Item key={user._id} >
+              <Item.Image src={`${user.image}`} />
+              <Item.Content>
+                <Item.Header as='a' onClick={() => {
+                  setVideoId(user.videoId)
+                  
+                }}>{user.rank} {user.title}</Item.Header>
+                
 
-    
+                  {user.inventory_docs.length > 0 
+                  ?  
+                  <Item.Meta>
+                  <Button as='div' labelPosition='right'>
+                  
+                    <Button color={user.inventory_docs[0].YN} onClick={() => {
+                      onClick(user);
+                    }} >
+                      <Icon name='heart' />
+                      Like
+                    </Button>
+                    <Label as='a' basic color='red' pointing='left'>
+                      2,048
+                    </Label>
+                  </Button>
+                  <span className='cinema'>{user.artist}</span>
+                </Item.Meta> 
+                : 
+                <Item.Meta>
+                  <Button as='div' labelPosition='right'>
+                  
+                    <Button color={user.YN} onClick={() => {
+                      onClick(user);
+                    }} >
+                      <Icon name='heart' />
+                      Like
+                    </Button>
+                    <Label as='a' basic color='red' pointing='left'>
+                      2,048
+                    </Label>
+                  </Button>
+                  <span className='cinema'>{user.artist}</span>
+                </Item.Meta>}
+                
+                <Item.Description></Item.Description>
+                <Item.Extra>
+                  <Label>IMAX</Label>
+                  <Label icon='globe' content='Additional Languages' />
+                </Item.Extra>
+              </Item.Content>
+            </Item>
+          </Item.Group>
+        ))}
+      </Container>
+    </Layout>
   )
+}
+
+
+// This gets called on every request
+export async function getServerSideProps() {
+
+
+  console.log('getServerSideProps')
+  
+  // Pass data to the page via props
+  return { props: { 'data': 123 } }
 }

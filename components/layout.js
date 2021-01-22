@@ -17,7 +17,7 @@ export default function Layout({ children, home }) {
     <div>
       <Navbar fixed="top" expand="lg" variant="light" bg="light">
         <Container>
-          <Navbar.Brand href="#" >Navbar</Navbar.Brand>
+          <Navbar.Brand href="#" >billboard 50</Navbar.Brand>
 
         </Container>
       </Navbar>
@@ -39,7 +39,7 @@ export default function Layout({ children, home }) {
           <Icon name='home' />
           Home
         </Menu.Item>
-        <Link href='/billboard'>
+        <Link href='/'>
         <Menu.Item as='a'>
           <Icon name='music' />
           billboard
