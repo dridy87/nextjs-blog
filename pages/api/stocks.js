@@ -6,6 +6,13 @@ const client = new MongoClient(uri, { useNewUrlParser: true,useUnifiedTopology: 
 
 export default function handler(req, res) {
    
+  const {
+    query: { id, name },
+    method,
+  } = req
+
+  console.log('dsfsfs', id)
+  
     client.connect(err => {
         const collection = client.db("dridy").collection("stockData");
         // perform actions on the collection object

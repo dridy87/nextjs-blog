@@ -14,14 +14,14 @@ export const siteTitle = 'Next.js Sample Website'
 export default function Layout({ children, home }) {
   return (
 
-    <div>
+    <div style={{'display': 'flex'}}>
       <Navbar fixed="top" expand="lg" variant="light" bg="light">
         <Container>
           <Navbar.Brand href="#" >Navbar</Navbar.Brand>
 
         </Container>
       </Navbar>
-      <div style={{marginTop:"3em"}}>
+      <div style={{marginTop:"3em",width: '100%'}}>
       <Sidebar.Pushable as={Segment}>
 
       <Sidebar

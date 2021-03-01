@@ -12,7 +12,7 @@ const fetcher = (url) => fetch(url).then((res) => {
 export default function StockChart() {
     const [ohlc, setOhlc] = useState();
     const [option, setOption] = useState();
-    const { data, error } = useSwr('/api/stock', fetcher, {
+    const { data, error } = useSwr('/api/stocks', fetcher, {
         onSuccess: (data) => {
             console.log(data)
             var ohlc = [],
