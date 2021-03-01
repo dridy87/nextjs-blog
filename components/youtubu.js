@@ -10,16 +10,12 @@ const videoIdB = '-DX3vJiqxm4';
 let videoIdaaa = '';
 
 export default function Example(props) {
-
-
   // const [videoId, setVideoId] = useState(props.videoId);
   const [player, setPlayer] = useState(null);
   const [isReady, setReady] = useState(false);
- 
+
   useEffect(() => {
     if (isReady) {
-      
-
 
       let data = store.getState().youtubu.youtubuList;
       let currentID = store.getState().youtubu.currentID;
@@ -59,6 +55,7 @@ export default function Example(props) {
 
 
 
+
     }
 
     // 
@@ -66,13 +63,9 @@ export default function Example(props) {
 
   const onReady = (event) => {
     // eslint-disable-next-line
-
     console.log(`YouTube Player object for videoId: "${props.videoId}" has been saved to state.`);
     setPlayer(event.target);
     setReady(true);
-
-
-
   };
 
   const onPlayVideo = () => {

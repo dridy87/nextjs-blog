@@ -53,6 +53,7 @@ function AlertDismissible() {
 
 
 export async function getStaticPaths() {
+  console.log('getStaticPaths')
   const paths = getAllPostIds()
   return {
     paths,
@@ -61,7 +62,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  // console.log(params)
+  console.log('getStaticProps',params)
   const postData = await getPostData(params.id)
   return {
     props: {
