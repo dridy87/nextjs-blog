@@ -74,17 +74,6 @@ export default function Index() {
   })
 
   const [videoId, setVideoId] = useState();
-  // useEffect(() => {
-  //   if(data !=undefined){
-  //     // console.log(data);
-  //     // console.log(data[0].videoId);
-  
-  //     // setVideoId(data[0].videoId);
-  //     console.log('billboard change', videoId)
-  //     //setVideoId(videoId)
-  //   }
-
-  // });
 
   function onClick(e){
     console.log(e);
