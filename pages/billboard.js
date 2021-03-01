@@ -62,7 +62,7 @@ export default function Index() {
   const { data, error } = useSwr('/api/billboard', fetcher, {
     onSuccess:(data) =>{
       //setVideoId(data[0].videoId)
-      
+       
       if(isFirst == false){
         store.dispatch(setData({youtubuList: data}))
         store.dispatch(setYoutubuID({currentID: data[0].videoId}))
