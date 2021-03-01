@@ -118,10 +118,7 @@ export default function Index() {
                   <span className='cinema'>{user.artist}</span>
                 </Item.Meta>
                 <Item.Description></Item.Description>
-                <Item.Extra>
-                  <Label>IMAX</Label>
-                  <Label icon='globe' content='Additional Languages' />
-                </Item.Extra>
+                
               </Item.Content>
             </Item>
         </Item.Group>
